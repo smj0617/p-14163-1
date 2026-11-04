@@ -1,16 +1,18 @@
-package com.mysite.sbb;
+package com.mysite.sbb.answer;
 
+import com.mysite.sbb.question.Question;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
 
+import static jakarta.persistence.FetchType.LAZY;
 import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Entity
-@Getter
 @Setter
+@Getter
 public class Answer {
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -18,7 +20,7 @@ public class Answer {
 
     private LocalDateTime createDate;
 
-    @ManyToOne
+    @ManyToOne(fetch = LAZY)
     private Question question;
 
     @Column(columnDefinition = "TEXT")
